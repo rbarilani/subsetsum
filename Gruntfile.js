@@ -18,9 +18,9 @@ module.exports = function(grunt) {
         }
       },
       libCoverage : {
-        src : '<%= jasmine.unit.src %>',
+        src : '<%= jasmine.lib.src %>',
         options : {
-          specs : '<%= jasmine.unit.options.specs %>',
+          specs : '<%= jasmine.lib.options.specs %>',
           template: require('grunt-template-jasmine-istanbul'),
           templateOptions : {
             coverage : 'out/coverage/coverage.json',
@@ -35,6 +35,12 @@ module.exports = function(grunt) {
                 type: 'html',
                 options: {
                   dir: 'out/coverage/html'
+                }
+              },
+              {
+                type : 'lcovonly',
+                options : {
+                  dir : 'out/coverage'
                 }
               }
             ]
@@ -51,5 +57,5 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', 'test');
   grunt.registerTask('test', ['jshint:lib','jasmine:lib']);
-
+  grunt.registerTask('travis', ['jshint','jasmine:libCoverage'])
 };
