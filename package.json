@@ -7,8 +7,7 @@
     "node": ">= 0.10.0"
   },
   "scripts": {
-    "test": "grunt travis --verbose",
-    "docs" : "grunt docs"
+    "test": "grunt travis --verbose"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

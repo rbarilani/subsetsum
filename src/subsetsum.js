@@ -32,7 +32,7 @@
       #sum([5, 10])=15
 
   */
-  function subsetSum(numbers, target, partial, result) {
+  function subsetSum(numbers, target, options, partial, result) {
 
     var s, n, remaining;
 
@@ -40,28 +40,48 @@
     result = result || [];
 
     // sum partial
-    s = partial.reduce(function (a, b) {
-      return a + b;
+    s = partial.reduce(function (prev, curr) {
+      return prev + options.number(curr);
     }, 0);
 
     // check if the partial sum is equals to target
-    if (s === target) {
+    if (s === options.number(target)) {
       // console.log("sum", partial, target);
       if(partial.length) {
         result.push(partial);
       }
     }
 
-    if (s >= target) {
+    if (s >= options.number(target)) {
       return result;  // if we reach the number why bother to continue
     }
 
     for (var i = 0; i < numbers.length; i++) {
       n = numbers[i];
       remaining = numbers.slice(i + 1);
-      subsetSum(remaining, target, partial.concat([n]), result);
+      subsetSum(remaining, target, options, partial.concat([n]), result);
     }
     return result;
+  }
+
+  /**
+   * Utility extend function
+   * Create a new object merging target and source object properties
+   *
+   * @private
+   *
+   * @param {Object} target
+   * @param {Object} source
+   * @return {Object} - the new object
+   */
+  function _extend(target, source) {
+    var a = Object.create(target);
+    Object.keys(source).map(function (prop) {
+        if(prop in a) {
+          a[prop] = source[prop];
+        }
+    });
+    return a;
   }
 
   /**
@@ -76,13 +96,25 @@
    * Porting of python implementation
    * source: Stackoverflow answer - http://stackoverflow.com/questions/4632322/finding-all-possible-combinations-of-numbers-to-reach-a-given-sum
    *
-   * @param {Array} numbers - a set of positive numbers
-   * @param {Int}   target  - positive sum target
+   * @param {Array}  numbers
+   *   A set of positive int numbers or can be a set of any type but you must provide a function
+   *   to extract a positive int number for those types @see options.number
+   *
+   * @param {Int|Object} target  - positive sum int or an object that represents the target (int number is extracted with the options.number function)
+   * @param {Object} options - options
+   *
+   * @param {Function} options.number
+   *  A function to extract a int number for curr item
    *
    * @return {Array}
    */
-  exports.getSubsets = function (numbers, target) {
-    return subsetSum(numbers, target);
+  exports.getSubsets = function (numbers, target, options) {
+
+    var opts = _extend({
+      number: function (n) { return n; }
+    }, options || {});
+
+    return subsetSum(numbers, target, opts);
   };
 
 })(typeof exports === 'undefined'? this.subsetsum = {} : exports);

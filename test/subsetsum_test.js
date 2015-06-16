@@ -6,7 +6,16 @@ if(typeof exports !== 'undefined') {
 
 describe('Service: subsetsum', function () {
 
-  describe('.getSubsets(numbers, target)', function () {
+  function beautyPrint(result, target) {
+    var string = new String("\n");
+
+    result.forEach(function (partial) {
+       string = string.concat(partial.join("+") + "=" + target + "\n");
+    });
+    console.log(string);
+  }
+
+  describe('.getSubsets(numbers, target, options)', function () {
 
     it('should return empty array when expected', function () {
       expect(subsetsum.getSubsets([3,9,8],-1)).toEqual([]);
@@ -35,6 +44,34 @@ describe('Service: subsetsum', function () {
         [15]
       ]);
     });
+
+    describe('options.number function', function () {
+
+      it('should work as expected', function () {
+
+        var items = [
+          { name: 'uno di ori', val : 1},
+          { name: '2 di bastoni', val: 2},
+          { name: '3 di ori', val: 3},
+          { name: '8 di coppe', val: 8}
+        ];
+
+        var target = {name: '3 di bastoni', val : 3};
+
+        var number = function (item) { return item.val; };
+
+        var res = subsetsum.getSubsets(items, target, {
+          number : number
+        });
+
+        var expectedRes = [[items[0], items[1]], [items[2]]];
+
+        expect(JSON.stringify(res)).toEqual(JSON.stringify(expectedRes));
+        expect(res).toEqual(expectedRes);
+
+      });
+    });
+
 
   });
 
