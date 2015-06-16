@@ -5,15 +5,6 @@
    * Porting of python implementation
    * source: Stackoverflow answer - http://stackoverflow.com/questions/4632322/finding-all-possible-combinations-of-numbers-to-reach-a-given-sum
    *
-   * Find all possible combinations of a set of positive
-   * numbers to reach a given positive sum target.
-   * Returns an empty array when no combinations.
-   *
-   * @param {Array} numbers - a set of positive numbers
-   * @param {Int}   target  - positive sum target
-   *
-   * @return {Array}
-   *
    *
   # python version
   def subset_sum(numbers, target, partial=[]):
@@ -75,6 +66,20 @@
 
   /**
    * Public API
+   * @module subsetsum
+   */
+
+  /**
+   * Find all possible combinations of a set of positive numbers to reach a given positive sum target.
+   * Returns an empty array when no combinations was found.
+   *
+   * Porting of python implementation
+   * source: Stackoverflow answer - http://stackoverflow.com/questions/4632322/finding-all-possible-combinations-of-numbers-to-reach-a-given-sum
+   *
+   * @param {Array} numbers - a set of positive numbers
+   * @param {Int}   target  - positive sum target
+   *
+   * @return {Array}
    */
   exports.getSubsets = function (numbers, target) {
     return subsetSum(numbers, target);

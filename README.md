@@ -52,4 +52,7 @@ console.log(result);
 
 ## API Reference
 
-..TODO..
+Click [here][api-doc].
+
+
+[api-doc]: https://github.com/rbarilani/subsetsum/blob/master/docs/api.md
