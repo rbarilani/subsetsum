@@ -1,0 +1,20 @@
+{
+  "name": "subsetsum",
+  "version": "0.0.0",
+  "main": "src/subsetsum.js",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "authors": [
+    "Ruben Barilani <ruben.barilani.dev@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
