@@ -1,23 +1,15 @@
 {
-  "name": "subsetsum",
+  "name": "rbarilani-subsetsum",
   "version": "0.0.0",
   "description": "",
   "main": "src/subsetsum.js",
-  "directories": {
-    "test": "test"
-  },
-  "dependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-jasmine": "^0.8.2",
-    "grunt-contrib-jshint": "^0.11.2",
-    "jasmine-node": "^1.14.5"
+  "engines": {
+    "node": ">= 0.10.0"
   },
   "devDependencies": {
+    "grunt": "^0.4.5",
     "grunt-contrib-jasmine": "^0.8.2",
     "grunt-contrib-jshint": "^0.11.2"
-  },
-  "scripts": {
-    "test": "test"
   },
   "repository": {
     "type": "git",

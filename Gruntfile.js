@@ -4,51 +4,52 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     // Task configuration.
-    jshint: {
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        unused: true,
-        boss: true,
-        eqnull: true,
-        globals: {
-          jQuery: true
+    jshint : {
+      options : {
+        jshintrc : '.jshintrc'
+      },
+      lib : ['src/**/*.js']
+    },
+    jasmine: {
+      lib: {
+        src: 'src/**/*.js',
+        options : {
+          specs: 'test/**/*_test.js'
         }
       },
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      lib_test: {
-        src: ['lib/**/*.js', 'test/**/*.js']
-      }
-    },
-    nodeunit: {
-      files: ['test/**/*_test.js']
-    },
-    watch: {
-      gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
-      },
-      lib_test: {
-        files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'nodeunit']
+      libCoverage : {
+        src : '<%= jasmine.unit.src %>',
+        options : {
+          specs : '<%= jasmine.unit.options.specs %>',
+          template: require('grunt-template-jasmine-istanbul'),
+          templateOptions : {
+            coverage : 'out/coverage/coverage.json',
+            report : [
+              {
+                type: 'cobertura',
+                options: {
+                  dir: 'out/coverage/cobertura'
+                }
+              },
+              {
+                type: 'html',
+                options: {
+                  dir: 'out/coverage/html'
+                }
+              }
+            ]
+          }
+        }
       }
     }
   });
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit']);
+  grunt.registerTask('default', 'test');
+  grunt.registerTask('test', ['jshint:lib','jasmine:lib']);
 
 };
