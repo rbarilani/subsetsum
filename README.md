@@ -3,9 +3,7 @@
 Find all possible combinations of a set of positive numbers to reach a given positive sum target.
 
 [![Build Status](https://travis-ci.org/rbarilani/subsetsum.svg)](https://travis-ci.org/rbarilani/subsetsum)
-
 [![Test Coverage](https://codeclimate.com/github/rbarilani/subsetsum/badges/coverage.svg)](https://codeclimate.com/github/rbarilani/subsetsum/coverage)
-
 [![Code Climate](https://codeclimate.com/github/rbarilani/subsetsum/badges/gpa.svg)](https://codeclimate.com/github/rbarilani/subsetsum)
 
 ## Install
