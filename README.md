@@ -24,7 +24,7 @@ npm install rbarilani-subsetsum --save
 
 ```js
 
-var subsetsum = require('subsetsum');
+var subsetsum = require('rbarilani-subsetsum');
 
 var result = subsetsum.getSubsets([1,5,3,8], 8);
 console.log(result);
