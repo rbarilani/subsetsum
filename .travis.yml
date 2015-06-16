@@ -8,6 +8,7 @@ node_js:
   - "0.10"
 
 before_install:
+  - npm install -g codeclimate-test-reporter
   - npm install -g grunt-cli
 
 after_script:
