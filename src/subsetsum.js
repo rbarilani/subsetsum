@@ -80,5 +80,5 @@
     return subsetSum(numbers, target);
   };
 
-})(typeof exports === 'undefined'? this.subsetSum = {} : exports);
+})(typeof exports === 'undefined'? this.subsetsum = {} : exports);
 
